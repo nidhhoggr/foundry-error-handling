@@ -1,0 +1,79 @@
+{
+	"compiler": {
+		"version": "0.8.17+commit.8df45f5f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "increment",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "number",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newNumber",
+						"type": "uint256"
+					}
+				],
+				"name": "setNumber",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/Counter.sol": "SamBank"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200000
+		},
+		"remappings": []
+	},
+	"sources": {
+		"src/Counter.sol": {
+			"keccak256": "0xf069307cf71de91c8b4d9878c4ae33be3a470e1ea667e96ca9560cdf45f92371",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://f0c8f242c3291980c1f5eebd6d9526312866a987208f1d1d966b5c60c046d0e9",
+				"dweb:/ipfs/QmeiiEYHpkiEc9dpSnHJYLc5UYhWepoWq8H5c5rrXHVmvM"
+			]
+		}
+	},
+	"version": 1
+}

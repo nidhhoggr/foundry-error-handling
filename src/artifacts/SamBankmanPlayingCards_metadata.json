@@ -1,0 +1,79 @@
+{
+	"compiler": {
+		"version": "0.8.17+commit.8df45f5f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "increment",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "number",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newNumber",
+						"type": "uint256"
+					}
+				],
+				"name": "setNumber",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/Counter.sol": "SamBankmanPlayingCards"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200000
+		},
+		"remappings": []
+	},
+	"sources": {
+		"src/Counter.sol": {
+			"keccak256": "0x8edc0082bcc70a262a4ed54a523738f6b8cb61b27800d36e55b97899a8780f25",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://75b753083712f184052f5b99305235345f307fcd65669addaf010c37c3b24c31",
+				"dweb:/ipfs/QmPj5XeXFtGPA5ME45KfLLzYuGKNMUakNQaBqKAYsfUWdx"
+			]
+		}
+	},
+	"version": 1
+}
