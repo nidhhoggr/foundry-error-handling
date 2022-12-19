@@ -18,14 +18,15 @@ contract ETCTesting is DSTest {
         assertEq(selector, mSelector);
     }
 
-    function _shiftFourBytes(bytes memory reason) internal pure returns (bytes memory data) {
+    function assertExpectedArgument(bytes memory reason, bytes32 argument) internal {
+        bytes32 data;
         assembly {data := mload(add(reason, 36))}
+        assertEq(argument, data);
     }
 
-    function assertExpectedArgument(bytes memory reason, bytes32 argument) internal {
-        bytes32 parsed; 
-        assembly {parsed := mload(add(reason, 36))}
-        assertEq(argument, parsed);
+    //operator overloading for specific data types
+    function assertExpectedArgument(bytes memory reason, uint argument) internal {
+        assertExpectedArgument(reason, bytes32(argument));
     }
 
     function testExpectCustomError() public {
@@ -44,7 +45,7 @@ contract ETCTesting is DSTest {
         try etcInstance.throwsCustomErrorFromOne() {}
         catch(bytes memory reason) {
             assertExpectedSelector(reason, CustomErrorFrom.selector);
-            assertExpectedArgument(reason, bytes32(uint(1)));
+            assertExpectedArgument(reason, 1);
         }
     }
 
@@ -52,7 +53,7 @@ contract ETCTesting is DSTest {
         try etcInstance.throwsCustomErrorFromTwo() {}
         catch(bytes memory reason) {
             assertExpectedSelector(reason, CustomErrorFrom.selector);
-            assertExpectedArgument(reason, bytes32(uint(2)));
+            assertExpectedArgument(reason, 2);
         }
     }
 
@@ -60,7 +61,7 @@ contract ETCTesting is DSTest {
         try etcInstance.throwsCustomErrorFromParam(11) {}
         catch(bytes memory reason) {
             assertExpectedSelector(reason, CustomErrorFrom.selector);
-            assertExpectedArgument(reason, bytes32(uint(1)));
+            assertExpectedArgument(reason, 1);
         }
     }
 
@@ -68,7 +69,7 @@ contract ETCTesting is DSTest {
         try etcInstance.throwsCustomErrorFromParam(5) {}
         catch(bytes memory reason) {
             assertExpectedSelector(reason, CustomErrorFrom.selector);
-            assertExpectedArgument(reason, bytes32(uint(2)));
+            assertExpectedArgument(reason, 2);
         }
     }
 }
