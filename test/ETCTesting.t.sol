@@ -24,9 +24,18 @@ contract ETCTesting is DSTest {
         assertEq(argument, data);
     }
 
+    function assertExpectedError(bytes memory reason, bytes32 mSelector, bytes32 argument) internal {
+        assertExpectedSelector(reason, mSelector);
+        assertExpectedArgument(reason, argument);
+    }
+
     //operator overloading for specific data types
     function assertExpectedArgument(bytes memory reason, uint argument) internal {
         assertExpectedArgument(reason, bytes32(argument));
+    }
+
+    function assertExpectedError(bytes memory reason, bytes32 mSelector, uint256 argument) internal {
+        assertExpectedError(reason, mSelector, bytes32(argument));
     }
 
     function testExpectCustomError() public {
@@ -41,35 +50,36 @@ contract ETCTesting is DSTest {
         etcInstance.throwsCustomErrorFromOne();
     }
 
+    function testExpectCustomErrorFromOneUsingAbiEncode() public {
+        vm.expectRevert(abi.encodePacked(CustomErrorFrom.selector, uint(1)));
+        etcInstance.throwsCustomErrorFromOne();
+    }
+
     function testExpectCustomErrorFromOne() public {
         try etcInstance.throwsCustomErrorFromOne() {}
         catch(bytes memory reason) {
-            assertExpectedSelector(reason, CustomErrorFrom.selector);
-            assertExpectedArgument(reason, 1);
+            assertExpectedError(reason, CustomErrorFrom.selector, 1);
         }
     }
 
     function testExpectCustomErrorFromTwo() public {
         try etcInstance.throwsCustomErrorFromTwo() {}
         catch(bytes memory reason) {
-            assertExpectedSelector(reason, CustomErrorFrom.selector);
-            assertExpectedArgument(reason, 2);
+            assertExpectedError(reason, CustomErrorFrom.selector, 2);
         }
     }
 
     function testExpectCustomErrorFromParamResultsFromOne() public {
         try etcInstance.throwsCustomErrorFromParam(11) {}
         catch(bytes memory reason) {
-            assertExpectedSelector(reason, CustomErrorFrom.selector);
-            assertExpectedArgument(reason, 1);
+            assertExpectedError(reason, CustomErrorFrom.selector, 1);
         }
     }
 
     function testExpectCustomErrorFromParamResultsFromTwo() public {
         try etcInstance.throwsCustomErrorFromParam(5) {}
         catch(bytes memory reason) {
-            assertExpectedSelector(reason, CustomErrorFrom.selector);
-            assertExpectedArgument(reason, 2);
+            assertExpectedError(reason, CustomErrorFrom.selector, 2);
         }
     }
 }
